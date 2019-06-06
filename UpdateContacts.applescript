@@ -1,23 +1,30 @@
 tell application "Microsoft Outlook"
+	set job_titles to {"LLM", "Drs.", "MA", "MSc", "BSc", "BA", "Ir.", "Prof.dr.", "Prof.ir.", "Dr.ir.", "Dr.", "Dr. Ph.D."}
 	repeat with this_contact in contacts
+		log company of this_contact as string
 		if (company of this_contact = "UU") then
 			set company of this_contact to "Universiteit Utrecht"
+			set business city of this_contact to "Utrecht"
+		else if (company of this_contact = "VU") then
+			set company of this_contact to "Vrije Universiteit"
+			set business city of this_contact to "Amsterdam"
+		else if (company of this_contact = "KB") then
+			set company of this_contact to "Koninklijke Bibliotheek"
+			set business city of this_contact to "Den Haag"
+		else if (company of this_contact = "UvA") then
+			set company of this_contact to "Universiteit van Amsterdam"
+			set business city of this_contact to "Amsterdam"
+		else if (company of this_contact = "RUG") then
+			set company of this_contact to "Rijksuniversiteit Groningen"
+			set business city of this_contact to "Groningen"
+		else if (company of this_contact = "UvT") then
+			set company of this_contact to "Universiteit van Tilburg"
+			set business city of this_contact to "Tilburg"
 		end if
-		if (job title of this_contact = "Drs.") then
+		log job title of this_contact as string
+		if (job title of this_contact is in job_titles) then
+			set title of this_contact to job title of this_contact
 			set job title of this_contact to ""
-			set title of this_contact to "Drs."
-		else if (job title of this_contact = "MA") then
-			set job title of this_contact to ""
-			set title of this_contact to "MA"
-		else if (job title of this_contact = "MSc") then
-			set job title of this_contact to ""
-			set title of this_contact to "MSc"
-		else if (job title of this_contact = "BA") then
-			set job title of this_contact to ""
-			set title of this_contact to "BA"
-		else if (job title of this_contact = "Dr.") then
-			set job title of this_contact to ""
-			set title of this_contact to "Dr."
-		end if
+		end if		
 	end repeat
 end tell
