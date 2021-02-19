@@ -1,5 +1,5 @@
 tell application "Microsoft Outlook"
-	set job_titles to {"LLM", "Drs.", "MA", "MSc", "BSc", "BA", "Ir.", "Prof.dr.", "Prof.ir.", "Dr.ir.", "Dr.", "Dr. Ph.D."}
+	set job_titles to {"LLM", "Drs.", "MA", "MSc", "BSc", "BA", "Ir.", "Prof.dr.", "Prof.ir.", "Dr.ir.", "Dr.", "Dr. Ph.D.", "Ph.D.", "MSc BA", "BEc", "Drs. BEd", "Mr.", "Mr.drs."}
 	repeat with this_contact in contacts
 		log company of this_contact as string
 		if (company of this_contact = "UU") then
